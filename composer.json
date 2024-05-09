@@ -1,0 +1,25 @@
+{
+    "name": "geo/atlas",
+    "description": "Laravel package providing comprehensive global data for your next project",
+    "keywords": [
+        "php",
+        "github",
+        "laravel",
+        "Open Source"
+      ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Geo\\Atlas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shreyansh Panchal",
+            "email": "shreyansh.panchal14@gmail.com"
+        }
+    ],
+    "require": {}
+}
