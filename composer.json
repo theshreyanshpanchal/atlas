@@ -1,5 +1,5 @@
 {
-    "name": "geo/atlas",
+    "name": "laraverse/atlas",
     "description": "Laravel package providing comprehensive global data for your next project",
     "keywords": [
         "php",
