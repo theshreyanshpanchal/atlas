@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Country;
-use App\Models\State;
+use Atlas\Models\Country;
+use Atlas\Models\State;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

@@ -12,7 +12,7 @@ class IntegrationServiceProvider extends ServiceProvider
         'database',
     ];
 
-    protected $root = __DIR__.'/..';
+    protected $root = __DIR__.'/../..';
 
     public function register()
     {

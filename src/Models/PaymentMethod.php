@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Atlas\Models;
 
 use App\Models\Pivots\PaymentMethodProduct;
 use Illuminate\Database\Eloquent\Model;

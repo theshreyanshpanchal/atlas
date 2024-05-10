@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Pivots;
+namespace Atlas\Models\Pivots;
 
 use Illuminate\Database\Eloquent\Model;
 

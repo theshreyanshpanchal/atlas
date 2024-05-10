@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Country;
-use App\Models\PaymentProduct;
+use Atlas\Models\Country;
+use Atlas\Models\PaymentProduct;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

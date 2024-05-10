@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\PaymentMethod;
-use App\Models\PaymentProduct;
+use Atlas\Models\PaymentMethod;
+use Atlas\Models\PaymentProduct;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
