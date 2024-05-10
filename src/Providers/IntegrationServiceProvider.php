@@ -23,11 +23,11 @@ class IntegrationServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        if (! config('atlas.routes.disable_migrations', false)) {
+        if (! config('atlas.routes.disable_routes', false)) {
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         }
 
-        if (! config('atlas.views.disable_migrations', false)) {
+        if (! config('atlas.views.disable_views', false)) {
             $this->loadViewsFrom(__DIR__.'/../resources/views', 'atlas');
         }
 
