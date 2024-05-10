@@ -28,7 +28,7 @@ class IntegrationServiceProvider extends ServiceProvider
         }
 
         if (! config('atlas.views.disable_migrations', false)) {
-            $this->loadViewsFrom(__DIR__.'/../views', 'atlas');
+            $this->loadViewsFrom(__DIR__.'/../resources/views', 'atlas');
         }
 
         if (! config('atlas.database.disable_migrations', false)) {
