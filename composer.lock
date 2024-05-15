@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f5e1deb92d4ff95182055f1846019af",
+    "content-hash": "fb94db3ccdf21e9d5b4f128ea1b769e8",
     "packages": [
         {
             "name": "brick/math",
@@ -1069,12 +1069,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "42e6bda679d8a1c56b56c00f9830c4d906812220"
+                "reference": "78e3dcea560bb0b1e0d21e42b282964d5f7d9d14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/42e6bda679d8a1c56b56c00f9830c4d906812220",
-                "reference": "42e6bda679d8a1c56b56c00f9830c4d906812220",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/78e3dcea560bb0b1e0d21e42b282964d5f7d9d14",
+                "reference": "78e3dcea560bb0b1e0d21e42b282964d5f7d9d14",
                 "shasum": ""
             },
             "require": {
@@ -1267,7 +1267,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-05-10T12:41:53+00:00"
+            "time": "2024-05-13T17:50:29+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -1275,12 +1275,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "2bb6aba89b474207996eff23d30a2c1fb77bfe12"
+                "reference": "37f94de71758dbfbccc9d299b0e5eb76e02a40f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/2bb6aba89b474207996eff23d30a2c1fb77bfe12",
-                "reference": "2bb6aba89b474207996eff23d30a2c1fb77bfe12",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/37f94de71758dbfbccc9d299b0e5eb76e02a40f5",
+                "reference": "37f94de71758dbfbccc9d299b0e5eb76e02a40f5",
                 "shasum": ""
             },
             "require": {
@@ -1326,7 +1326,7 @@
                 "issues": "https://github.com/laravel/prompts/issues",
                 "source": "https://github.com/laravel/prompts/tree/main"
             },
-            "time": "2024-04-30T15:04:08+00:00"
+            "time": "2024-05-10T19:22:18+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -2849,12 +2849,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "1f85b37c66ab468f91831a4baaf529b97be11530"
+                "reference": "9955b08d13b8d68510527759e0eb7b287d706f7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/1f85b37c66ab468f91831a4baaf529b97be11530",
-                "reference": "1f85b37c66ab468f91831a4baaf529b97be11530",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/9955b08d13b8d68510527759e0eb7b287d706f7c",
+                "reference": "9955b08d13b8d68510527759e0eb7b287d706f7c",
                 "shasum": ""
             },
             "require": {
@@ -2934,7 +2934,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-06T21:16:32+00:00"
+            "time": "2024-05-13T21:15:45+00:00"
         },
         {
             "name": "symfony/clock",
@@ -4674,12 +4674,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "91479c48d276d907cc68614b46409fa92ec4a1c8"
+                "reference": "e866ee8df56760544d03aaf7d972c6398285179b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/91479c48d276d907cc68614b46409fa92ec4a1c8",
-                "reference": "91479c48d276d907cc68614b46409fa92ec4a1c8",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/e866ee8df56760544d03aaf7d972c6398285179b",
+                "reference": "e866ee8df56760544d03aaf7d972c6398285179b",
                 "shasum": ""
             },
             "require": {
@@ -4747,7 +4747,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-02T09:03:15+00:00"
+            "time": "2024-05-13T15:35:37+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -5173,12 +5173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10"
+                "reference": "eb2c4ea3f2d77730fc5065c92c6ad3f2893ff40d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/be16ed8fa69d9596707fcb2382ea0f71c0825b10",
-                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/eb2c4ea3f2d77730fc5065c92c6ad3f2893ff40d",
+                "reference": "eb2c4ea3f2d77730fc5065c92c6ad3f2893ff40d",
                 "shasum": ""
             },
             "require": {
@@ -5248,7 +5248,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-15T06:23:06+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
