@@ -2,9 +2,9 @@
 
 namespace Atlas\Models\Pivots;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PaymentMethodProduct extends Model
+class PaymentMethodProduct extends Pivot
 {
     protected $table = 'payment_method_products';
 

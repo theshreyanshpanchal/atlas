@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Disable routes
+    | Load routes
     |--------------------------------------------------------------------------
     |
-    | Prevent Atlas`s default package routes.
+    | Prevent Atlas`s default package routes from running.
     |
     */
-    'disable_routes' => false,
+    'load_routes' => true,
 
 ];

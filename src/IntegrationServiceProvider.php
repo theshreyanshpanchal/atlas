@@ -6,45 +6,80 @@ use Illuminate\Support\ServiceProvider;
 
 class IntegrationServiceProvider extends ServiceProvider
 {
-    protected $configFiles = [
+    protected $configs = [
+
+        'configs',
+        
         'database',
+
+        'models',
+        
         'routes',
+        
         'views',
     ];
 
-    protected $root = __DIR__.'/..';
+    protected $root = __DIR__ . '/..';
 
     public function register()
     {
-        collect($this->configFiles)->each(function ($config) {
-            $this->mergeConfigFrom("{$this->root}/config/$config.php", "atlas.$config");
+        collect($this->configs)->each(function ($config) {
+
+            $path = "{$this->root}/config/$config.php";
+            
+            $key = "atlas.$config";
+
+            $this->mergeConfigFrom( $path, $key );
+
         });
     }
 
     public function boot()
     {
-        if (! config('atlas.routes.disable_migrations', false)) {
-            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        }
+        $loadRoutes = config('atlas.routes.load_routes', true);
 
-        if (! config('atlas.views.disable_migrations', false)) {
-            $this->loadViewsFrom(__DIR__.'/../resources/views', 'atlas');
-        }
+        if ($loadRoutes) { $this->loadRoutesFrom(__DIR__ . '/../routes/web.php'); }
+        
+        $loadViews = config('atlas.views.load_views', true);
 
-        if (! config('atlas.database.disable_migrations', false)) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        }
+        if ($loadViews) { $this->loadViewsFrom(__DIR__ . '/../resources/views', 'atlas'); }
+        
+        $loadMigrations = config('atlas.database.load_migrations', true);
+
+        if ($loadMigrations) { $this->loadMigrationsFrom(__DIR__ . '/../database/migrations'); }
 
         if ($this->app->runningInConsole()) {
-            collect($this->configFiles)->each(function ($config) {
-                $this->publishes([
-                    "{$this->root}/config/$config.php" => config_path("atlas/$config.php"),
-                ], 'atlas');
-            });
+            
+            $publishConfigs = config('atlas.configs.publish_configs', true);
 
-            $this->publishes([
-                __DIR__.'/../database/migrations/' => database_path('migrations'),
-            ], 'atlas.migrations');
+            if ($publishConfigs) {
+
+                collect($this->configs)->each(function ($config) {
+                    
+                    $group = 'atlas';
+    
+                    $paths = ["{$this->root}/config/$config.php" => config_path("atlas/$config.php") ];
+    
+                    $this->publishes($paths, $group);
+    
+                });
+
+            }
+
+            $publishModels = config('atlas.models.publish_models', false);
+
+            if ($publishModels) { $this->publishes([__DIR__ . '/Models/' => app_path('Models') ], 'atlas.models'); }
+
+            $publishModels = config('atlas.database.publish_migrations', false);
+
+            if ($publishModels) { $this->publishes([__DIR__ . '/../database/migrations/' => database_path('migrations') ], 'atlas.migrations'); }
+
+            $publishViews = config('atlas.views.publish_views', false);
+
+            if ($publishViews) { $this->publishes([__DIR__ . '/../resources/views' => resource_path('views/vendor/atlas')], 'atlas'); }
+
         }
+
     }
+
 }

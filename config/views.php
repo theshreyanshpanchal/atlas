@@ -4,12 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Disable views
+    | Load views
     |--------------------------------------------------------------------------
     |
-    | Prevent Atlas`s default package views.
+    | Prevent Atlas`s default package views from running.
     |
     */
-    'disable_views' => false,
+    'load_views' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Publish views
+    |--------------------------------------------------------------------------
+    |
+    | Prevent Atlas`s default package views from publishing.
+    |
+    */
+    'publish_views' => false,
 
 ];

@@ -6,17 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('currencies', function (Blueprint $table) {
+            
             $table->id();
+            
             $table->string('code');
+            
             $table->string('symbol');
+            
             $table->timestamps();
+
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('currencies');
     }

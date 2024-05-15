@@ -2,7 +2,7 @@
 
 namespace Atlas\Models;
 
-use App\Models\Pivots\PaymentMethodProduct;
+use Atlas\Models\Pivots\PaymentMethodProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

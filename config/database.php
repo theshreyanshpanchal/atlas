@@ -4,12 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Disable migrations
+    | Load migrations
     |--------------------------------------------------------------------------
     |
     | Prevent Atlas`s default package migrations from running.
     |
     */
-    'disable_migrations' => false,
+    'load_migrations' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Publish migrations
+    |--------------------------------------------------------------------------
+    |
+    | Prevent Atlas`s default package migrations from publishing.
+    |
+    */
+    'publish_migrations' => false,
 
 ];
