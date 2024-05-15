@@ -2,6 +2,7 @@
 
 namespace Laraverse\Atlas;
 
+use Atlas\Console\Commands\Install;
 use Illuminate\Support\ServiceProvider;
 
 class IntegrationServiceProvider extends ServiceProvider
@@ -78,6 +79,7 @@ class IntegrationServiceProvider extends ServiceProvider
 
             if ($publishViews) { $this->publishes([__DIR__ . '/../resources/views' => resource_path('views/vendor/atlas')], 'atlas'); }
 
+            $this->commands([ Install::class ]);
         }
 
     }
