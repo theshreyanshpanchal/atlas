@@ -12,11 +12,11 @@
 
                 <div class="flex justify-center lg:col-start-2 gap-4">
 
-                    <img src="{{ asset('svgs/laravel.svg') }}" alt="Laravel" class="h-16">
+                    <img src="{{ asset('svgs/laravel.svg') }}" alt="Laravel" class="h-18">
 
-                    <img src="{{ asset('svgs/plus.svg') }}" alt="Plus" class="h-16">
+                    <img src="{{ asset('svgs/plus.svg') }}" alt="Plus" class="h-18">
 
-                    <img src="{{ asset('svgs/atlas.svg') }}" alt="Atlas" class="h-16">
+                    <img src="{{ asset('svgs/atlas.svg') }}" alt="Atlas" class="h-18">
 
                 </div>
 

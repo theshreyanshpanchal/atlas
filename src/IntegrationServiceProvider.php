@@ -9,6 +9,8 @@ class IntegrationServiceProvider extends ServiceProvider
 {
     protected $configs = [
 
+        'assets',
+
         'configs',
         
         'database',
@@ -79,7 +81,19 @@ class IntegrationServiceProvider extends ServiceProvider
 
             if ($publishViews) { $this->publishes([__DIR__ . '/../resources/views' => resource_path('views/vendor/atlas')], 'atlas'); }
 
-            $this->commands([ Install::class ]);
+            $publishAssets = config('atlas.assets.publish_assets', true);
+
+            if ($publishAssets) {
+                
+                $this->publishes([__DIR__ . '/../resources/svgs' => public_path('svgs')], 'atlas');
+
+                $this->publishes([__DIR__ . '/../resources/images' => public_path('images')], 'atlas');
+
+                $this->publishes([__DIR__ . '/../resources/favicon' => public_path('favicon')], 'atlas');
+            
+            }
+
+            // $this->commands([ Install::class ]);
         }
 
     }
