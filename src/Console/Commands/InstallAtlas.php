@@ -1,10 +1,10 @@
 <?php
 
-namespace Atlas\Console\Commands;
+namespace Laraverse\Atlas\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class Install extends Command
+class InstallAtlas extends Command
 {
     /**
      * The name and signature of the console command.
@@ -32,6 +32,8 @@ class Install extends Command
 
         $this->newLine();
 
+        $this->publishConfiguration($force = true);
+
         if ($this->confirm('Run database migrations and seeder?', true)) {
             
             $this->call('migrate');
@@ -48,9 +50,23 @@ class Install extends Command
 
         $this->line('Please show some love for Atlas by giving a star on GitHub ⭐️');
 
-        $this->info('https://github.com/Shreyansh1426/atlas');
+        $this->info('https://github.com/theshreyanshpanchal/atlas');
 
         $this->newLine(3);
 
+    }
+
+    /**
+     * Publishes configuration for the Service Provider.
+     *
+     * @param  bool  $forcePublish
+     */
+    private function publishConfiguration($forcePublish = false): void
+    {
+        $params = [ '--provider' => "Laraverse\Atlas\IntegrationServiceProvider", '--tag' => 'atlas' ];
+
+        if ($forcePublish === true) { $params['--force'] = true; }
+
+        $this->call('vendor:publish', $params);
     }
 }
