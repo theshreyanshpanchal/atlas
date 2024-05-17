@@ -12,7 +12,7 @@
 
     @component('atlas::components.common.favicon') @endcomponent
 
-    <link href="{{ asset('vendor/laraverse/atlas/app.css?v=1') }}" rel="stylesheet">
+    <link href="{{ asset('atlas/css/app.css') }}" rel="stylesheet">
 
 </head>
 
