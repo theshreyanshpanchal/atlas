@@ -1,6 +1,6 @@
 <?php
 
-namespace Atlas\Models;
+namespace Laraverse\Atlas\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

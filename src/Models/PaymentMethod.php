@@ -1,8 +1,8 @@
 <?php
 
-namespace Atlas\Models;
+namespace Laraverse\Atlas\Models;
 
-use Atlas\Models\Pivots\PaymentMethodProduct;
+use Laraverse\Atlas\Models\Pivots\PaymentMethodProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

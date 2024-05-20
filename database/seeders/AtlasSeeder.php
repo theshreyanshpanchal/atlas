@@ -2,18 +2,18 @@
 
 namespace Laraverse\Atlas\Database\Seeders;
 
-use Atlas\Models\Continent;
-use Atlas\Models\Country;
-use Atlas\Models\Currency;
-use Atlas\Models\PaymentMethod;
-use Atlas\Models\PaymentProduct;
-use Atlas\Models\Pivots\CountryCurrency;
-use Atlas\Models\Pivots\CountryPaymentProduct;
-use Atlas\Models\Pivots\CountryState;
-use Atlas\Models\Pivots\CountryTimezone;
-use Atlas\Models\Pivots\PaymentMethodProduct;
-use Atlas\Models\State;
-use Atlas\Models\Timezone;
+use Laraverse\Atlas\Models\Continent;
+use Laraverse\Atlas\Models\Country;
+use Laraverse\Atlas\Models\Currency;
+use Laraverse\Atlas\Models\PaymentMethod;
+use Laraverse\Atlas\Models\PaymentProduct;
+use Laraverse\Atlas\Models\Pivots\CountryCurrency;
+use Laraverse\Atlas\Models\Pivots\CountryPaymentProduct;
+use Laraverse\Atlas\Models\Pivots\CountryState;
+use Laraverse\Atlas\Models\Pivots\CountryTimezone;
+use Laraverse\Atlas\Models\Pivots\PaymentMethodProduct;
+use Laraverse\Atlas\Models\State;
+use Laraverse\Atlas\Models\Timezone;
 use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

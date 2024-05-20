@@ -1,6 +1,6 @@
 <?php
 
-namespace Atlas\Models\Pivots;
+namespace Laraverse\Atlas\Models\Pivots;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 

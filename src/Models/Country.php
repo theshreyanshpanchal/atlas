@@ -1,11 +1,11 @@
 <?php
 
-namespace Atlas\Models;
+namespace Laraverse\Atlas\Models;
 
-use Atlas\Models\Pivots\CountryCurrency;
-use Atlas\Models\Pivots\CountryPaymentProduct;
-use Atlas\Models\Pivots\CountryState;
-use Atlas\Models\Pivots\CountryTimezone;
+use Laraverse\Atlas\Models\Pivots\CountryCurrency;
+use Laraverse\Atlas\Models\Pivots\CountryPaymentProduct;
+use Laraverse\Atlas\Models\Pivots\CountryState;
+use Laraverse\Atlas\Models\Pivots\CountryTimezone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
