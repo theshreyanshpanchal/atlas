@@ -68,8 +68,6 @@ class AtlasServiceProvider extends ServiceProvider
 
             }
 
-            $this->publishes([__DIR__ . '/../public' => public_path('atlas')]);
-
             $publishModels = config('atlas.models.publish_models', false);
 
             if ($publishModels) { $this->publishes([__DIR__ . '/Models/' => app_path('Models') ], 'atlas.models'); }

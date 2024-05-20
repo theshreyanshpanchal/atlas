@@ -38,7 +38,7 @@ class InstallAtlas extends Command
             
             $this->call('migrate');
 
-            $this->call('db:seed', ['--class' => 'Atlas']);
+            $this->call('db:seed', ['--class' => 'Laraverse\\Atlas\\Database\\Seeders\\AtlasSeeder']);
         
         }
 

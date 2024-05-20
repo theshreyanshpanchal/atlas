@@ -23,7 +23,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Laraverse\\Atlas\\": "src/"
+            "Laraverse\\Atlas\\": "src/",
+            "Laraverse\\Atlas\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "authors": [

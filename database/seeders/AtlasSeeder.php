@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Laraverse\Atlas\Database\Seeders;
 
 use Atlas\Models\Continent;
 use Atlas\Models\Country;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class Atlas extends Seeder
+class AtlasSeeder extends Seeder
 {
     public function run(): void
     {
