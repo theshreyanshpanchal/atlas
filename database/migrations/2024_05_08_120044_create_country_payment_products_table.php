@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('country_payment_products', function (Blueprint $table) {
             
-            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('country_id')->nullable()->constrained('countries');
             
-            $table->foreignId('payment_product_id')->constrained('payment_products');
+            $table->foreignId('payment_product_id')->nullable()->constrained('payment_products');
 
         });
     }

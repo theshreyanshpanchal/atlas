@@ -9,7 +9,6 @@ use Laraverse\Atlas\Models\PaymentMethod;
 use Laraverse\Atlas\Models\PaymentProduct;
 use Laraverse\Atlas\Models\Pivots\CountryCurrency;
 use Laraverse\Atlas\Models\Pivots\CountryPaymentProduct;
-use Laraverse\Atlas\Models\Pivots\CountryState;
 use Laraverse\Atlas\Models\Pivots\CountryTimezone;
 use Laraverse\Atlas\Models\Pivots\PaymentMethodProduct;
 use Laraverse\Atlas\Models\State;
@@ -19,6 +18,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Laraverse\Atlas\Models\City;
 
 class AtlasSeeder extends Seeder
 {
@@ -41,6 +41,8 @@ class AtlasSeeder extends Seeder
                 $this->atlas($content->atlas);
 
                 $this->payment($content->payment);
+
+                $this->cities($content->cities);
             }
 
             DB::commit();
@@ -58,10 +60,6 @@ class AtlasSeeder extends Seeder
     {
         foreach ($content as $data) {
 
-            $states = [];
-
-            $stateNames = [];
-
             $timezones = [];
 
             $currencies = [];
@@ -70,11 +68,7 @@ class AtlasSeeder extends Seeder
 
             foreach (optional($data)->states as $state) {
 
-                $state = $this->createState($state);
-
-                $stateNames[] = $state->id;
-
-                $states[] = [ 'state_id' => $state->id, 'country_id' => $country->id ];
+                $this->createState($country->id, $state);
             }
 
             foreach (optional($data)->timezones as $timezone) {
@@ -87,8 +81,6 @@ class AtlasSeeder extends Seeder
             $currency = $this->createCurrency($data);
 
             $currencies[] = [ 'currency_id' => $currency->id, 'country_id' => $country->id ];
-
-            CountryState::insert($states);
 
             CountryCurrency::insert($currencies);
 
@@ -126,12 +118,17 @@ class AtlasSeeder extends Seeder
 
             $product = $this->createPaymentProduct($data);
 
-            $paymentMethodProducts[] = [
-
-                'payment_method_id' => optional( $methods->get($paymentMethodCode) )->id,
-
-                'payment_product_id' => $product->id
-            ];
+            if (
+                ! is_null(optional( $methods->get($paymentMethodCode) )->id) &&
+                ! is_null($product->id)
+            ) {
+                $paymentMethodProducts[] = [
+    
+                    'payment_method_id' => optional( $methods->get($paymentMethodCode) )->id,
+    
+                    'payment_product_id' => $product->id
+                ];
+            }
         }
 
         PaymentMethodProduct::insert($paymentMethodProducts);
@@ -152,15 +149,38 @@ class AtlasSeeder extends Seeder
 
                 $paymentProductCode = Str::upper( Str::replace( '-', '_', $data->code ) );
 
-                $countryPaymentProducts[] = [
-
-                    'country_id' => optional( $countries->get($countryCode) )->id,
-
-                    'payment_product_id' => optional( $products->get($paymentProductCode) )->id,
-                ];
+                if (
+                    ! is_null(optional( $countries->get($countryCode) )->id) &&
+                    ! is_null(optional( $products->get($paymentProductCode) )->id)
+                ) {
+                    $countryPaymentProducts[] = [
+    
+                        'country_id' => optional( $countries->get($countryCode) )->id,
+    
+                        'payment_product_id' => optional( $products->get($paymentProductCode) )->id,
+                    ];
+                }
             }
 
             CountryPaymentProduct::insert($countryPaymentProducts);
+        }
+    }
+
+    private function cities(array $content): void
+    {
+        foreach ($content as $data) {
+
+            $state = State::query()->where('name', $data->name)->where('code', $data->code)->first();
+
+            if ($state) {
+
+                foreach ($data->cities as $city) {
+
+                    $this->createCity($state->id, $city);
+
+                }
+                
+            }
         }
     }
 
@@ -169,8 +189,6 @@ class AtlasSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        CountryState::truncate();
-
         CountryCurrency::truncate();
 
         CountryTimezone::truncate();
@@ -178,6 +196,8 @@ class AtlasSeeder extends Seeder
         PaymentMethodProduct::truncate();
 
         CountryPaymentProduct::truncate();
+
+        City::truncate();
 
         State::truncate();
 
@@ -197,10 +217,12 @@ class AtlasSeeder extends Seeder
 
     }
 
-    private function createState(object $data): State
+    private function createState(string $countryId, object $data): State
     {
         return State::create(
             [
+                'country_id' => $countryId,
+
                 'code' => $data->stateCode,
 
                 'name' => $data->name,
@@ -310,6 +332,21 @@ class AtlasSeeder extends Seeder
                 'name' => $data->name,
 
                 'code' => $data->code,
+            ]
+        );
+    }
+
+    private function createCity(string  $stateId, object $data): City
+    {
+        return City::create(
+            [
+                'state_id' => $stateId,
+
+                'name' => $data->name,
+                
+                'latitude' => optional($data)->latitude,
+                
+                'longitude' => optional($data)->longitude
             ]
         );
     }

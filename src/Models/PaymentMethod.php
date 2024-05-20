@@ -12,6 +12,16 @@ class PaymentMethod extends Model
 
     protected $guarded = [];
 
+    public static function generalColumns(): array
+    {
+        return [ 'id', 'code' ];
+    }
+
+    public static function relationalColumns(): string
+    {
+        return 'id,code' ;
+    }
+
     public function paymentProducts(): BelongsToMany
     {
         return $this->belongsToMany(PaymentProduct::class, 'payment_method_products')->using(PaymentMethodProduct::class);

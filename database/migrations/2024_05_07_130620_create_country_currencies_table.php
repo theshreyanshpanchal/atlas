@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('country_currencies', function (Blueprint $table) {
             
-            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('country_id')->nullable()->constrained('countries');
             
-            $table->foreignId('currency_id')->constrained('currencies');
+            $table->foreignId('currency_id')->nullable()->constrained('currencies');
 
         });
     }

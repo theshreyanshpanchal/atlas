@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('country_timezones', function (Blueprint $table) {
             
-            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('country_id')->nullable()->constrained('countries');
             
-            $table->foreignId('timezone_id')->constrained('timezones');
+            $table->foreignId('timezone_id')->nullable()->constrained('timezones');
 
         });
     }

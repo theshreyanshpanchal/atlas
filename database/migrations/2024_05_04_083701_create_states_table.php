@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('states', function (Blueprint $table) {
             
             $table->id();
+
+            $table->foreignId('country_id')->nullable()->constrained('countries');
             
             $table->string('name');
             

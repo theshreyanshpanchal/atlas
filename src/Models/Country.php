@@ -4,10 +4,10 @@ namespace Laraverse\Atlas\Models;
 
 use Laraverse\Atlas\Models\Pivots\CountryCurrency;
 use Laraverse\Atlas\Models\Pivots\CountryPaymentProduct;
-use Laraverse\Atlas\Models\Pivots\CountryState;
 use Laraverse\Atlas\Models\Pivots\CountryTimezone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
@@ -17,9 +17,9 @@ class Country extends Model
 
     protected $casts = [ 'translations' => 'array' ];
 
-    public function states(): BelongsToMany
+    public function states(): HasMany
     {
-        return $this->belongsToMany(State::class, 'country_states')->using(CountryState::class);
+        return $this->hasMany(State::class);
     }
 
     public function timezones(): BelongsToMany
@@ -40,5 +40,10 @@ class Country extends Model
     public static function generalColumns(): array
     {
         return [ 'id', 'name', 'iso3', 'iso2', 'phone_code', 'native', 'capital', 'latitude', 'longitude', 'emoji', 'emoji_u', 'tld', 'translations' ];
+    }
+
+    public static function generalColumnsWithForeign(): array
+    {
+        return [ 'id', 'state_id', 'name', 'iso3', 'iso2', 'phone_code', 'native', 'capital', 'latitude', 'longitude', 'emoji', 'emoji_u', 'tld', 'translations' ];
     }
 }
