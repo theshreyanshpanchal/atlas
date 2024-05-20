@@ -12,7 +12,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laraverse\\Atlas\\IntegrationServiceProvider"
+                "Laraverse\\Atlas\\AtlasServiceProvider"
             ]
         }
     },

@@ -4,7 +4,7 @@ namespace Laraverse\Atlas;
 
 use Illuminate\Support\ServiceProvider;
 
-class IntegrationServiceProvider extends ServiceProvider
+class AtlasServiceProvider extends ServiceProvider
 {
     protected $configs = [
 
@@ -94,7 +94,7 @@ class IntegrationServiceProvider extends ServiceProvider
             
             }
 
-            $this->commands([ Console\Commands\InstallAtlas::class ]);
+            $this->commands([ Commands\InstallAtlas::class ]);
 
         }
 

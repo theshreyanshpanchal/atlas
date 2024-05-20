@@ -1,6 +1,6 @@
 <?php
 
-namespace Laraverse\Atlas\Console\Commands;
+namespace Laraverse\Atlas\Commands;
 
 use Illuminate\Console\Command;
 
@@ -63,7 +63,7 @@ class InstallAtlas extends Command
      */
     private function publishConfiguration($forcePublish = false): void
     {
-        $params = [ '--provider' => "Laraverse\Atlas\IntegrationServiceProvider", '--tag' => 'atlas' ];
+        $params = [ '--provider' => "Laraverse\Atlas\AtlasServiceProvider", '--tag' => 'atlas' ];
 
         if ($forcePublish === true) { $params['--force'] = true; }
 
