@@ -6,7 +6,7 @@ if (! config('atlas.routes.disable_routes', false)) {
 
     Route::prefix('atlas')->group(function () {
     
-        Route::get('/', function () { return view('atlas::pages.splash'); });
+        Route::get('/splash', function () { return view('atlas::pages.splash'); });
     
         Route::get('/docs', function () { return view('atlas::pages.docs'); });
     

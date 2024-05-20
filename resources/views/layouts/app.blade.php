@@ -12,7 +12,7 @@
 
     @component('atlas::components.common.favicon') @endcomponent
 
-    <link href="{{ asset('atlas/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
