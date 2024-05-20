@@ -52,21 +52,15 @@ class AtlasServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             
-            $publishConfigs = config('atlas.configs.publish_configs', true);
-
-            if ($publishConfigs) {
-
-                collect($this->configs)->each(function ($config) {
+            collect($this->configs)->each(function ($config) {
                     
-                    $group = 'atlas';
-    
-                    $paths = ["{$this->root}/config/$config.php" => config_path("atlas/$config.php") ];
-    
-                    $this->publishes($paths, $group);
-    
-                });
+                $group = 'atlas';
 
-            }
+                $paths = ["{$this->root}/config/$config.php" => config_path("atlas/$config.php") ];
+
+                $this->publishes($paths, $group);
+
+            });
 
             $publishModels = config('atlas.models.publish_models', false);
 
