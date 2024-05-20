@@ -30,7 +30,7 @@ class AtlasSeeder extends Seeder
 
             $this->truncate();
 
-            $file = __DIR__ . '/../../docs/atlas.json';
+            $file = __DIR__ . '/../../public/docs/atlas.json';
 
             if (file_exists($file)) {
 

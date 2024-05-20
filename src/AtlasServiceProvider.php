@@ -38,6 +38,16 @@ class AtlasServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->load();
+
+        $this->publish();
+
+        $this->client();
+
+    }
+
+    private function load(): void
+    {
         $loadRoutes = config('atlas.routes.load_routes', true);
 
         if ($loadRoutes) { $this->loadRoutesFrom(__DIR__ . '/../routes/web.php'); }
@@ -49,7 +59,10 @@ class AtlasServiceProvider extends ServiceProvider
         $loadMigrations = config('atlas.database.load_migrations', true);
 
         if ($loadMigrations) { $this->loadMigrationsFrom(__DIR__ . '/../database/migrations'); }
+    }
 
+    private function publish(): void
+    {
         if ($this->app->runningInConsole()) {
             
             collect($this->configs)->each(function ($config) {
@@ -78,18 +91,22 @@ class AtlasServiceProvider extends ServiceProvider
 
             if ($publishAssets) {
                 
-                $this->publishes([__DIR__ . '/../resources/svgs' => public_path('svgs')], 'atlas');
+                $this->publishes([__DIR__ . '/../resources/svgs' => public_path('atlas/svgs')], 'atlas');
 
-                $this->publishes([__DIR__ . '/../resources/images' => public_path('images')], 'atlas');
+                $this->publishes([__DIR__ . '/../resources/images' => public_path('atlas/images')], 'atlas');
 
-                $this->publishes([__DIR__ . '/../resources/favicon' => public_path('favicon')], 'atlas');
+                $this->publishes([__DIR__ . '/../resources/favicon' => public_path('atlas/favicon')], 'atlas');
             
             }
 
             $this->commands([ Commands\InstallAtlas::class ]);
 
         }
+    }
 
+    private function client(): void
+    {
+        $this->app->singleton(Client::class, function () { return new Client(); });
     }
 
 }

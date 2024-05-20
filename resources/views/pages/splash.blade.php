@@ -4,7 +4,7 @@
 
     <div class="bg-gray-50 dark:bg-black h-screen flex flex-col justify-center items-center text-black/50 dark:text-white/50">
 
-        <img id="background" class="absolute -left-20 top-0 max-w-full" src="{{ asset('svgs/splash.svg') }}" />
+        <img id="background" class="absolute -left-20 top-0 max-w-full" src="{{ asset('atlas/svgs/splash.svg') }}" />
 
         <div class="relative flex flex-col items-center justify-center w-full max-w-2xl px-6 lg:max-w-7xl">
 
@@ -12,11 +12,11 @@
 
                 <div class="flex justify-center lg:col-start-2 gap-4">
 
-                    <img src="{{ asset('svgs/laravel.svg') }}" alt="Laravel" class="h-18">
+                    <img src="{{ asset('atlas/svgs/laravel.svg') }}" alt="Laravel" class="h-18">
 
-                    <img src="{{ asset('svgs/plus.svg') }}" alt="Plus" class="h-18">
+                    <img src="{{ asset('atlas/svgs/plus.svg') }}" alt="Plus" class="h-18">
 
-                    <img src="{{ asset('svgs/atlas.svg') }}" alt="Atlas" class="h-18">
+                    <img src="{{ asset('atlas/svgs/atlas.svg') }}" alt="Atlas" class="h-18">
 
                 </div>
 
