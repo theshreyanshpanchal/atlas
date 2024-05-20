@@ -9,8 +9,6 @@ class AtlasServiceProvider extends ServiceProvider
     protected $configs = [
 
         'assets',
-
-        'configs',
         
         'database',
 
