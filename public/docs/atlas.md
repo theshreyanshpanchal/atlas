@@ -844,8 +844,8 @@ This method throws an exception when a column is not found in a table.
 
 **Parameters:**
 
-* `$column` (string): The name of the column that was not found.
-* `$table` (string): The name of the table where the column was not found.
+* `column` (string): The name of the column that was not found.
+* `table` (string): The name of the table where the column was not found.
 
 **Returns:**
 
@@ -857,8 +857,8 @@ This method throws an exception when a given column is not allowed for the Eloqu
 
 **Parameters:**
 
-* `$column` (string): The name of the column that is not allowed.
-* `$allowed` (array): An array of allowed columns for the Eloquent operation.
+* `column` (string): The name of the column that is not allowed.
+* `allowed` (array): An array of allowed columns for the Eloquent operation.
 
 **Returns:**
 
@@ -870,7 +870,7 @@ This method throws an exception when a valid column is not specified.
 
 **Parameters:**
 
-* `$allowed` (array): An array of allowed columns.
+* `allowed` (array): An array of allowed columns.
 
 **Returns:**
 
