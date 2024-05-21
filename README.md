@@ -37,7 +37,7 @@ php artisan vendor:publish --provider="Laraverse\Atlas\AtlasServiceProvider"
 You should install the atlas with:
 
 ```bash
-# It will migrate and seed the data which atlas will use later to serve comprehensive global data.
+# It will setup the atlas to serve comprehensive global data.
 php artisan atlas:install
 ```
 
@@ -58,6 +58,11 @@ class YourClass
     }
 }
 ```
+
+## Credits
+
+- [Shreyansh Panchal](https://github.com/theshreyanshpanchal)
+- [Infynno Solutions LLP](https://infynno.com)
 
 ## License
 
