@@ -1,4 +1,4 @@
-<p align="center"><img src="/resources/banners/atlas-light.png" alt="Atlas"></p>
+<p align="center"><img src="/resources/banners/atlas-dark.png" alt="Atlas"></p>
 
 # <span style="color:red;">Atlas</span>
 
@@ -74,39 +74,3 @@ See the  [Documentation](DOCUMENTATION.md) for detailed usage instructions.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-
-```php
-
-$client->getCountries()
-$client->getCountryBy()
-$client->getCountryStates()
-$client->getCountryCurrencies()
-$client->getCountryTimezones()
-$client->getCountryPaymentProducts()
-
-$client->getCurrencies()
-$client->getCurrencyBy()
-$client->getCountriesBasedOnSupportedCurrency()
-
-$client->getStates()
-$client->getStateBy()
-$client->getCountryBasedOnGivenState()
-$client->getStateCurrencies()
-
-$client->getTimezones()
-$client->getTimezoneBy()
-$client->getCountryBasedOnTimezone()
-
-$client->getPaymentMethods()
-$client->getPaymentMethodBy()
-$client->getPaymentMethodProducts()
-
-$client->getPaymentProducts()
-$client->getPaymentProductBy()
-
-$client->getCities()
-$client->getCityBy()
-$client->getStateByCity()
-
-```
