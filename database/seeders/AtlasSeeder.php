@@ -123,9 +123,9 @@ class AtlasSeeder extends Seeder
                 ! is_null($product->id)
             ) {
                 $paymentMethodProducts[] = [
-    
+
                     'payment_method_id' => optional( $methods->get($paymentMethodCode) )->id,
-    
+
                     'payment_product_id' => $product->id
                 ];
             }
@@ -154,9 +154,9 @@ class AtlasSeeder extends Seeder
                     ! is_null(optional( $products->get($paymentProductCode) )->id)
                 ) {
                     $countryPaymentProducts[] = [
-    
+
                         'country_id' => optional( $countries->get($countryCode) )->id,
-    
+
                         'payment_product_id' => optional( $products->get($paymentProductCode) )->id,
                     ];
                 }
@@ -170,7 +170,7 @@ class AtlasSeeder extends Seeder
     {
         foreach ($content as $data) {
 
-            $state = State::query()->where('name', $data->name)->where('code', $data->code)->first();
+            $state = State::query()->where('name', $data->name)->where('code', $data->stateCode)->first();
 
             if ($state) {
 
@@ -179,7 +179,7 @@ class AtlasSeeder extends Seeder
                     $this->createCity($state->id, $city);
 
                 }
-                
+
             }
         }
     }
@@ -343,9 +343,9 @@ class AtlasSeeder extends Seeder
                 'state_id' => $stateId,
 
                 'name' => $data->name,
-                
+
                 'latitude' => optional($data)->latitude,
-                
+
                 'longitude' => optional($data)->longitude
             ]
         );

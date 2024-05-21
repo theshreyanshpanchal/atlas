@@ -1,6 +1,6 @@
 <p align="center"><img src="/resources/banners/atlas-light.png" alt="Atlas"></p>
 
-# Atlas
+# <span style="color:red;">Atlas</span>
 
 Laravel package providing comprehensive global data for your next project
 
@@ -18,13 +18,13 @@ To install the package, use Composer:
 composer require laraverse/atlas
 ```
 
-Optional: The service provider will automatically get registered. Or you may manually add the service provider:
+Optional: The service provider will automatically get registered. Or you may manually add the service provider in bootstrap/providers.php file:
 
 
 ```php
-'providers' => [
+return [
     // ...
-    Laraverse\Atlas\AtlasServiceProvider::class,
+    Laraverse\Atlas\AtlasServiceProvider::class
 ];
 ```
 
@@ -41,6 +41,10 @@ You should install the atlas with:
 php artisan atlas:install
 ```
 
+<span style="color:red; border: 1px solid red; padding: 10px; border-radius: 5px;">
+    Note: Seeding the data will take time due to its large size.
+</span>
+
 ## Usage
 
 In your project file include the atlas client like below:
@@ -54,10 +58,13 @@ class YourClass
     public function call(Client $client) : Collection
     {
         // Start using Atlas client.
-        $client->getPaymentProducts();
+        $client->getCurrencies();
     }
 }
 ```
+## Documentation and Usage Instructions
+
+See the  [Documentation](DOCUMENTATION.md) for detailed usage instructions.
 
 ## Credits
 

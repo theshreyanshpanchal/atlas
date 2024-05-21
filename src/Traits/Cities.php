@@ -2,6 +2,7 @@
 
 namespace Laraverse\Atlas\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Laraverse\Atlas\Exceptions\InvalidColumn;
 use Laraverse\Atlas\Helpers;
@@ -11,23 +12,37 @@ use Laraverse\Atlas\Models\State;
 trait Cities {
 
     /**
-     * get cities.
+     * get cities based on specified state.
      */
-    public function getCities(): Collection
+    public function getCities(string $value, string $column = 'id'): Collection
     {
         $columns = City::generalColumns();
 
-        return City::select($columns)->get();
+        $validColumns = Helpers::columns('states', ['country_id', 'code']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
+
+        if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
+
+        return City::select($columns)->whereHas(
+
+            'state',
+
+            function(Builder $builder) use ($value, $column) { $builder->where($column, $value); }
+
+        )->get();
     }
 
     /**
      * get city by specified column.
      */
-    public function getCityBy(string $value, string $column = 'code'): ?City
+    public function getCityBy(string $value, string $column = 'id'): ?City
     {
         $columns = City::generalColumns();
 
         $validColumns = Helpers::columns('cities', ['state_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -44,6 +59,8 @@ trait Cities {
         $relationalColumns = State::relationalColumns();
 
         $validColumns = Helpers::columns('cities', ['state_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
