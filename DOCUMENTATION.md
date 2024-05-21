@@ -1,5 +1,4 @@
-<details>
-<summary><strong>getCities()</strong></summary>
+# `getCities()`
 
 ## Purpose:
 To retrieve a list of cities based on a specified state.
@@ -31,11 +30,11 @@ $cities = $this->getCities($stateId);
 // Specifying a column to compare with
 $cities = $this->getCities($stateName, 'name');
 ```
-</details>
 
 
-<details>
-<summary><strong>getCityBy()</strong></summary>
+
+
+# `getCityBy()`
 
 ## Purpose:
 To retrieve or fetch a city based on a specified property and value.
@@ -67,10 +66,11 @@ $cities = $this->getCityBy($cityId);
 // Specifying a column to compare with
 $cities = $this->getCityBy($cityName, 'name');
 ```
-</details>
 
-<details>
-<summary><strong>getStateByCity()</strong></summary>
+
+
+
+# `getStateByCity()`
 
 ## Purpose:
 To retrieve or fetch a state based on a specified city property and value.
@@ -102,10 +102,11 @@ $cities = $this->getStateByCity($cityId);
 // Specifying a column to compare with
 $cities = $this->getStateByCity($cityName, 'name');
 ```
-</details>
 
-<details>
-<summary><strong>getCountries()</strong></summary>
+
+
+
+# `getCountries()`
 
 ## Purpose:
 To retrieve or fetch list of countries.
@@ -119,10 +120,12 @@ To retrieve or fetch list of countries.
 // Using default parameters
 $cities = $this->getCountries();
 ```
-</details>
 
-<details>
-<summary><strong>getCountryBy()</strong></summary>
+
+
+
+
+# `getCountryBy()`
 
 ## Purpose:
 To retrieve or fetch a country based on a specified property and value.
@@ -163,10 +166,11 @@ $cities = $this->getCountryBy($countryName, 'name');
 // Specifying a column to compare with
 $cities = $this->getCountryBy($countryCode, 'iso2');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryStates()</strong></summary>
+
+
+
+# `getCountryStates()`
 
 ## Purpose:
 To retrieve country states based on a specified property and value.
@@ -207,10 +211,11 @@ $cities = $this->getCountryStates($countryName, 'name');
 // Specifying a column to compare with
 $cities = $this->getCountryStates($countryCode, 'iso2');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryCurrencies()</strong></summary>
+
+
+
+# `getCountryCurrencies()`
 
 ## Purpose:
 To retrieve country currencies based on a specified property and value.
@@ -251,10 +256,11 @@ $cities = $this->getCountryCurrencies($countryName, 'name');
 // Specifying a column to compare with
 $cities = $this->getCountryCurrencies($countryCode, 'iso2');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryTimezones()</strong></summary>
+
+
+
+# `getCountryTimezones()`
 
 ## Purpose:
 To retrieve country timezones based on a specified property and value.
@@ -295,10 +301,11 @@ $cities = $this->getCountryTimezones($countryName, 'name');
 // Specifying a column to compare with
 $cities = $this->getCountryTimezones($countryCode, 'iso2');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryPaymentProducts()</strong></summary>
+
+
+
+# `getCountryPaymentProducts()`
 
 ## Purpose:
 To retrieve country payment products based on a specified property and value.
@@ -339,10 +346,11 @@ $cities = $this->getCountryPaymentProducts($countryName, 'name');
 // Specifying a column to compare with
 $cities = $this->getCountryPaymentProducts($countryCode, 'iso2');
 ```
-</details>
 
-<details>
-<summary><strong>getCurrencies()</strong></summary>
+
+
+
+# `getCurrencies()`
 
 ## Purpose:
 To retrieve currencies.
@@ -356,10 +364,11 @@ To retrieve currencies.
 // Using default parameters
 $cities = $this->getCurrencies();
 ```
-</details>
 
-<details>
-<summary><strong>getCurrencyBy()</strong></summary>
+
+
+
+# `getCurrencyBy()`
 
 ## Purpose:
 To retrieve currency based on a specified property and value.
@@ -391,10 +400,11 @@ $cities = $this->getCurrencyBy($currencyId);
 // Specifying a column to compare with
 $cities = $this->getCurrencyBy($currencyName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getCountriesBasedOnSupportedCurrency()</strong></summary>
+
+
+
+# `getCountriesBasedOnSupportedCurrency()`
 
 ## Purpose:
 To retrieve supported countries based on a specified currency property and value.
@@ -426,10 +436,11 @@ $cities = $this->getCountriesBasedOnSupportedCurrency($currencyId);
 // Specifying a column to compare with
 $cities = $this->getCountriesBasedOnSupportedCurrency($currencyName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getPaymentMethods()</strong></summary>
+
+
+
+# `getPaymentMethods()`
 
 ## Purpose:
 To retrieve payment methods.
@@ -443,10 +454,11 @@ To retrieve payment methods.
 // Using default parameters
 $cities = $this->getPaymentMethods();
 ```
-</details>
 
-<details>
-<summary><strong>getPaymentMethodBy()</strong></summary>
+
+
+
+# `getPaymentMethodBy()`
 
 ## Purpose:
 To retrieve payment methods based on a specified payment method property and value.
@@ -478,10 +490,11 @@ $cities = $this->getPaymentMethodBy($paymentMethodId);
 // Specifying a column to compare with
 $cities = $this->getPaymentMethodBy($paymentMethodName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getPaymentMethodProducts()</strong></summary>
+
+
+
+# `getPaymentMethodProducts()`
 
 ## Purpose:
 To retrieve payment method products with logos based on a specified payment method property and value.
@@ -513,10 +526,11 @@ $cities = $this->getPaymentMethodProducts($paymentMethodId);
 // Specifying a column to compare with
 $cities = $this->getPaymentMethodProducts($paymentMethodName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getPaymentProducts()</strong></summary>
+
+
+
+# `getPaymentProducts()`
 
 ## Purpose:
 To retrieve payment products with logos.
@@ -530,10 +544,11 @@ To retrieve payment products with logos.
 // Using default parameters
 $cities = $this->getPaymentProducts();
 ```
-</details>
 
-<details>
-<summary><strong>getPaymentProductBy()</strong></summary>
+
+
+
+# `getPaymentProductBy()`
 
 ## Purpose:
 To retrieve payment products with logos based on a specified payment product property and value.
@@ -566,10 +581,11 @@ $cities = $this->getPaymentProductBy($paymentProductId);
 // Specifying a column to compare with
 $cities = $this->getPaymentProductBy($paymentProductName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getStates()</strong></summary>
+
+
+
+# `getStates()`
 
 ## Purpose:
 To retrieve states.
@@ -583,10 +599,10 @@ To retrieve states.
 // Using default parameters
 $cities = $this->getStates($paymentProductId);
 ```
-</details>
 
-<details>
-<summary><strong>getStateBy()</strong></summary>
+
+
+# `getStateBy()`
 
 ## Purpose:
 To retrieve state based on a specified state property and value.
@@ -619,10 +635,10 @@ $cities = $this->getStateBy($stateId);
 // Specifying a column to compare with
 $cities = $this->getStateBy($stateName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getStateCities()</strong></summary>
+
+
+# `getStateCities()`
 
 ## Purpose:
 To retrieve state cities based on a specified state property and value.
@@ -655,10 +671,11 @@ $cities = $this->getStateCities($stateId);
 // Specifying a column to compare with
 $cities = $this->getStateCities($stateName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getStateCurrencies()</strong></summary>
+
+
+
+# `getStateCurrencies()`
 
 ## Purpose:
 To retrieve state currencies based on a specified state property and value.
@@ -691,10 +708,10 @@ $cities = $this->getStateCurrencies($stateId);
 // Specifying a column to compare with
 $cities = $this->getStateCurrencies($stateName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryBasedOnGivenState()</strong></summary>
+
+
+# `getCountryBasedOnGivenState()`
 
 ## Purpose:
 To retrieve state country based on a specified state property and value.
@@ -727,10 +744,11 @@ $cities = $this->getCountryBasedOnGivenState($stateId);
 // Specifying a column to compare with
 $cities = $this->getCountryBasedOnGivenState($stateName, 'code');
 ```
-</details>
 
-<details>
-<summary><strong>getTimezones()</strong></summary>
+
+
+
+# `getTimezones()`
 
 ## Purpose:
 To retrieve timezones.
@@ -744,10 +762,11 @@ To retrieve timezones.
 // Using default parameters
 $cities = $this->getTimezones();
 ```
-</details>
 
-<details>
-<summary><strong>getTimezoneBy()</strong></summary>
+
+
+
+# `getTimezoneBy()`
 
 ## Purpose:
 To retrieve timezone based on a specified state property and value.
@@ -781,10 +800,10 @@ $cities = $this->timezone($timezoneId);
 // Specifying a column to compare with
 $cities = $this->timezone($timezoneAbbreviation, 'abbreviation');
 ```
-</details>
 
-<details>
-<summary><strong>getCountryBasedOnTimezone()</strong></summary>
+
+
+# `getCountryBasedOnTimezone()`
 
 ## Purpose:
 To retrieve timezone country based on a specified timezone property and value.
@@ -818,4 +837,3 @@ $cities = $this->getCountryBasedOnTimezone($timezoneId);
 // Specifying a column to compare with
 $cities = $this->getCountryBasedOnTimezone($timezoneAbbreviation, 'abbreviation');
 ```php
-</details>
