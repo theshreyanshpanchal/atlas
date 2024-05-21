@@ -62,7 +62,9 @@ class YourClass
 ```
 ## Documentation and Usage Instructions
 
-See the  [Documentation](DOCUMENTATION.md) for detailed usage instructions.
+#### You can access the built-in documentation module by navigating to `/atlas/docs` after setting up Atlas.
+
+Alternatively, Check out the [Documentation](DOCUMENTATION.md) for detailed usage instructions.
 
 ## Credits
 
