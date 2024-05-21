@@ -24,11 +24,13 @@ trait Timezones {
     /**
      * get timezone by specified column.
      */
-    public function getTimezoneBy(string $value, string $column = 'abbreviation'): ?Timezone
+    public function getTimezoneBy(string $value, string $column = 'id'): ?Timezone
     {
         $columns = Timezone::generalColumns();
 
         $validColumns = Helpers::columns('timezones', ['gmt_offset', 'gmt_offset_name']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -38,11 +40,13 @@ trait Timezones {
     /**
      * get countries based on supported currency.
      */
-    public function getCountryBasedOnTimezone(string $value, string $column = 'abbreviation'): Country|Collection
+    public function getCountryBasedOnTimezone(string $value, string $column = 'id'): Country|Collection
     {
         $columns = Country::generalColumns();
 
         $validColumns = Helpers::columns('timezones', ['gmt_offset', 'gmt_offset_name']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 

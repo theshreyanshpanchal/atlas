@@ -3,7 +3,6 @@
 namespace Laraverse\Atlas\Traits;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Laraverse\Atlas\Exceptions\InvalidColumn;
 use Laraverse\Atlas\Helpers;
 use Laraverse\Atlas\Models\PaymentMethod;
@@ -24,11 +23,13 @@ trait PaymentMethods {
     /**
      * get payment method by specified column.
      */
-    public function getPaymentMethodBy(string $value, string $column = 'code'): ?PaymentMethod
+    public function getPaymentMethodBy(string $value, string $column = 'id'): ?PaymentMethod
     {
         $columns = PaymentMethod::generalColumns();
 
         $validColumns = Helpers::columns('payment_methods', ['order']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -38,11 +39,13 @@ trait PaymentMethods {
     /**
      * get payment method products.
      */
-    public function getPaymentMethodProducts(string $value, string $column = 'code'): Collection
+    public function getPaymentMethodProducts(string $value, string $column = 'id'): Collection
     {
         $relationalColumns = PaymentProduct::relationalColumns();
 
         $validColumns = Helpers::columns('payment_methods', ['order']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 

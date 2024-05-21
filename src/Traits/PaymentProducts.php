@@ -22,11 +22,13 @@ trait PaymentProducts {
     /**
      * get payment product by specified column.
      */
-    public function getPaymentProductBy(string $value, string $column = 'code'): ?PaymentProduct
+    public function getPaymentProductBy(string $value, string $column = 'id'): ?PaymentProduct
     {
         $columns = PaymentProduct::generalColumns();
 
         $validColumns = Helpers::columns('payment_methods', ['logo', 'order']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 

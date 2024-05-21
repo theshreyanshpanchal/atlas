@@ -26,11 +26,13 @@ trait States {
     /**
      * get state by specified column.
      */
-    public function getStateBy(string $value, string $column = 'code'): ?State
+    public function getStateBy(string $value, string $column = 'id'): ?State
     {
         $columns = State::generalColumns();
 
-        $validColumns = Helpers::columns('states');
+        $validColumns = Helpers::columns('states', ['country_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -40,27 +42,39 @@ trait States {
     /**
      * get state cities by specified column.
      */
-    public function getStateCities(string $value, string $column = 'code'): ?Collection
+    public function getStateCities(string $value, string $column = 'id'): ?Collection
     {
-        $relationalColumns = City::relationalColumns();
+        $generalColumns = City::generalColumnsWithForeign();
 
-        $validColumns = Helpers::columns('states');
+        $relationalColumns = State::relationalColumns();
+
+        $validColumns = Helpers::columns('states', ['country_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
-        $state = State::select('id', 'state_id')->with('cities:' . $relationalColumns)->where($column, $value)->first();
+        $states = City::select($generalColumns)->with('state:' . $relationalColumns)->whereHas(
 
-        return $state->cities;
+            'state',
+
+            function(Builder $builder) use ($value, $column) { $builder->where($column, $value); }
+
+        )->get();
+
+        return $states;
     }
 
      /**
      * get state currencies.
      */
-    public function getStateCurrencies(string $value, string $column = 'code'): ?Collection
+    public function getStateCurrencies(string $value, string $column = 'id'): ?Collection
     {
         $relationalColumns = Currency::relationalColumns();
 
-        $validColumns = Helpers::columns('states');
+        $validColumns = Helpers::columns('states', ['country_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -78,11 +92,13 @@ trait States {
      /**
      * get country based on given state.
      */
-    public function getCountryBasedOnGivenState(string $value, string $column = 'code'): Collection
+    public function getCountryBasedOnGivenState(string $value, string $column = 'id'): Collection
     {
         $columns = Country::generalColumns();
 
-        $validColumns = Helpers::columns('states');
+        $validColumns = Helpers::columns('states', ['country_id']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 

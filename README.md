@@ -1,6 +1,6 @@
 <p align="center"><img src="/resources/banners/atlas-dark.png" alt="Atlas"></p>
 
-# <span style="color:red;">Atlas</span>
+# Atlas
 
 Laravel package providing comprehensive global data for your next project
 
@@ -41,9 +41,7 @@ You should install the atlas with:
 php artisan atlas:install
 ```
 
-<span style="color:red; border: 1px solid red; padding: 10px; border-radius: 5px;">
-    Note: Seeding the data will take time due to its large size.
-</span>
+Note: Seeding the data will take time due to its large size.
 
 ## Usage
 

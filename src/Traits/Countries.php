@@ -26,11 +26,13 @@ trait Countries {
     /**
      * get country by specified column.
      */
-    public function getCountryBy(string $value, string $column = 'iso2'): ?Country
+    public function getCountryBy(string $value, string $column = 'id'): ?Country
     {
         $columns = Country::generalColumns();
 
         $validColumns = Helpers::columns('countries', ['emoji', 'emoji_u', 'translations']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -40,11 +42,13 @@ trait Countries {
     /**
      * get country states.
      */
-    public function getCountryStates(string $value, string $column = 'iso2'): Collection
+    public function getCountryStates(string $value, string $column = 'id'): Collection
     {
         $relationalColumns = State::relationalColumns();
 
         $validColumns = Helpers::columns('countries', ['emoji', 'emoji_u', 'translations']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -52,17 +56,23 @@ trait Countries {
 
         if (! $country) { return new Collection(); }
 
-        return $country->states;
+        $states = $country->states;
+
+        foreach ($states as $state) { $state->makeHidden('country_id'); }
+
+        return $states;
     }
 
     /**
      * get country currencies.
      */
-    public function getCountryCurrencies(string $value, string $column = 'iso2'): Collection
+    public function getCountryCurrencies(string $value, string $column = 'id'): Collection
     {
         $relationalColumns = Currency::relationalColumns();
 
         $validColumns = Helpers::columns('countries', ['emoji', 'emoji_u', 'translations']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -76,11 +86,13 @@ trait Countries {
     /**
      * get country timezones.
      */
-    public function getCountryTimezones(string $value, string $column = 'iso2'): Collection
+    public function getCountryTimezones(string $value, string $column = 'id'): Collection
     {
         $relationalColumns = Timezone::relationalColumns();
 
         $validColumns = Helpers::columns('countries', ['emoji', 'emoji_u', 'translations']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -94,11 +106,13 @@ trait Countries {
     /**
      * get country payment products.
      */
-    public function getCountryPaymentProducts(string $value, string $column = 'iso2'): Collection
+    public function getCountryPaymentProducts(string $value, string $column = 'id'): Collection
     {
         $relationalColumns = PaymentProduct::relationalColumns();
 
         $validColumns = Helpers::columns('countries', ['emoji', 'emoji_u', 'translations']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 

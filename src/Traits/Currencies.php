@@ -24,11 +24,13 @@ trait Currencies {
     /**
      * get currency by specified column.
      */
-    public function getCurrencyBy(string $value, string $column = 'code'): ?Currency
+    public function getCurrencyBy(string $value, string $column = 'id'): ?Currency
     {
         $columns = Currency::generalColumns();
 
         $validColumns = Helpers::columns('currencies', ['symbol']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
@@ -38,11 +40,13 @@ trait Currencies {
      /**
      * get countries based on supported currency.
      */
-    public function getCountriesBasedOnSupportedCurrency(string $value, string $column = 'code'): Collection
+    public function getCountriesBasedOnSupportedCurrency(string $value, string $column = 'id'): Collection
     {
         $columns = Country::generalColumns();
 
         $validColumns = Helpers::columns('currencies', ['symbol']);
+
+        if (empty($column)) { throw InvalidColumn::notSpecified($validColumns); }
 
         if (! in_array($column, $validColumns)) { throw InvalidColumn::notAllowed($column, $validColumns); }
 
