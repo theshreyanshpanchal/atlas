@@ -1,3 +1,8 @@
+
+---
+
+## Usage:
+
 <details>
 <summary><strong>getCities()</strong></summary>
 
@@ -817,5 +822,58 @@ $cities = $this->getCountryBasedOnTimezone($timezoneId);
 
 // Specifying a column to compare with
 $cities = $this->getCountryBasedOnTimezone($timezoneAbbreviation, 'abbreviation');
-```php
+```
+</details>
+
+---
+
+## Exception:
+
+<details>
+<summary><strong>InvalidColumn</strong></summary>
+
+The `InvalidColumn` class is a custom exception class that inherits from the `RuntimeException` class.
+
+It is used to represent errors related to invalid columns in Eloquent operations.
+
+### Methods
+
+#### notFound(string $column, string $table): self
+
+This method throws an exception when a column is not found in a table.
+
+**Parameters:**
+
+* `$column` (string): The name of the column that was not found.
+* `$table` (string): The name of the table where the column was not found.
+
+**Returns:**
+
+An `InvalidColumn` exception object.
+
+#### notAllowed(string $column, array $allowed): self
+
+This method throws an exception when a given column is not allowed for the Eloquent operation.
+
+**Parameters:**
+
+* `$column` (string): The name of the column that is not allowed.
+* `$allowed` (array): An array of allowed columns for the Eloquent operation.
+
+**Returns:**
+
+An `InvalidColumn` exception object.
+
+#### notSpecified(array $allowed): self
+
+This method throws an exception when a valid column is not specified.
+
+**Parameters:**
+
+* `$allowed` (array): An array of allowed columns.
+
+**Returns:**
+
+An `InvalidColumn` exception object.
+
 </details>

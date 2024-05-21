@@ -12,7 +12,11 @@
 
     @component('atlas::components.common.favicon') @endcomponent
 
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Typography -->
+    <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.4.1/dist/typography.min.css" rel="stylesheet">
 
 </head>
 
