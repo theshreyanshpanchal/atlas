@@ -4,12 +4,6 @@
 
 Laravel package providing comprehensive global data for your next project
 
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-
 ## Installation
 
 To install the package, use Composer:
@@ -74,3 +68,11 @@ Alternatively, Check out the [Documentation](DOCUMENTATION.md) for detailed usag
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.

@@ -3,16 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Laraverse\Atlas\Enums\Tables;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create(Tables::CITIES, function (Blueprint $table) {
 
             $table->id();
 
-            $table->foreignId('state_id')->nullable()->constrained('states');
+            $table->foreignId('state_id')->nullable()->constrained(Tables::STATES);
             
             $table->string('name');
             
@@ -27,6 +28,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists(Tables::CITIES);
     }
 };

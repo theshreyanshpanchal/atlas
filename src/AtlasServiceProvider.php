@@ -12,6 +12,8 @@ class AtlasServiceProvider extends ServiceProvider
         
         'database',
 
+        'facilities',
+
         'models',
         
         'routes',

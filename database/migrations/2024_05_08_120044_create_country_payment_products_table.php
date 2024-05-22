@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Laraverse\Atlas\Enums\Tables;
 
 return new class extends Migration
 {
@@ -11,11 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('country_payment_products', function (Blueprint $table) {
+        Schema::create(Tables::COUNTRY_PAYMENT_PRODUCTS, function (Blueprint $table) {
             
-            $table->foreignId('country_id')->nullable()->constrained('countries');
+            $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRY_CURRENCIES);
             
-            $table->foreignId('payment_product_id')->nullable()->constrained('payment_products');
+            $table->foreignId('payment_product_id')->nullable()->constrained(Tables::PAYMENT_PRODUCTS);
 
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('country_payment_products');
+        Schema::dropIfExists(Tables::COUNTRY_PAYMENT_PRODUCTS);
     }
 };

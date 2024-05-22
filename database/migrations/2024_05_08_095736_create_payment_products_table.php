@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Laraverse\Atlas\Enums\Tables;
 
 return new class extends Migration
 {
@@ -11,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment_products', function (Blueprint $table) {
+        Schema::create(Tables::PAYMENT_PRODUCTS, function (Blueprint $table) {
             
             $table->id();
             
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payment_products');
+        Schema::dropIfExists(Tables::PAYMENT_PRODUCTS);
     }
 };
