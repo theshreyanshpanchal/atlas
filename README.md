@@ -28,6 +28,23 @@ You should publish the models, migration, views, assets and the config files wit
 php artisan vendor:publish --provider="Laraverse\Atlas\AtlasServiceProvider"
 ```
 
+Note: After vendor files are published, access atlas config files in the project root. Enable or disable facilities via config/atlas/facilities.php.
+
+```bash
+return [
+    'enabled' => [
+        # Tables::CITIES, (By default, It's disabled due to its large data size)
+        Tables::COUNTRIES,
+        Tables::CURRENCIES,
+        Tables::PAYMENT_METHODS,
+        Tables::PAYMENT_PRODUCTS,
+        Tables::STATES,
+        Tables::TIMEZONES,
+        Tables::CONTINENTS,
+    ],
+]
+```
+
 You should install the atlas with:
 
 ```bash
