@@ -9,7 +9,7 @@ All notable changes of `Atlas` will be documented in this file.
 * Initial release of the Atlas with basic configurations.
 
 
-## v1.0.1 - 2024-05-09
+## v1.0.1 - 2024-05-22
 
 ### What's Updated
 
@@ -18,3 +18,10 @@ All notable changes of `Atlas` will be documented in this file.
 * Implemented custom exceptions for improved error handling.
 
 * Included built-in documentation module accessible at `/atlas/docs` after setup.
+
+
+## v1.0.2 - 2024-05-23
+
+### What's Updated
+
+* New facilities feature.
