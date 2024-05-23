@@ -18,6 +18,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Laraverse\Atlas\Enums\Tables;
 use Laraverse\Atlas\Models\City;
 
 class AtlasSeeder extends Seeder
@@ -38,11 +39,17 @@ class AtlasSeeder extends Seeder
 
                 $content = json_decode($content);
 
-                $this->atlas($content->atlas);
+                $facilities = config('atlas.facilities.enabled') ?? [];
 
-                $this->payment($content->payment);
+                $this->atlas($content->atlas, $facilities);
 
-                $this->cities($content->cities);
+                $this->payment($content->payment, $facilities);
+
+                if (in_array(Tables::CITIES, $facilities)) {
+
+                    $this->cities($content->cities);
+
+                }
             }
 
             DB::commit();
@@ -56,7 +63,7 @@ class AtlasSeeder extends Seeder
         }
     }
 
-    private function atlas(array $content): void
+    private function atlas(array $content, array $facilities): void
     {
         foreach ($content as $data) {
 
@@ -64,31 +71,84 @@ class AtlasSeeder extends Seeder
 
             $currencies = [];
 
-            $country = $this->createCountry($data);
+            if (
+                in_array(Tables::COUNTRIES, $facilities) ||
+                in_array(Tables::STATES, $facilities) ||
+                in_array(Tables::CITIES, $facilities)
+            ) {
 
-            foreach (optional($data)->states as $state) {
+                $country = $this->createCountry($data);
 
-                $this->createState($country->id, $state);
             }
 
-            foreach (optional($data)->timezones as $timezone) {
+            if (
+                in_array(Tables::STATES, $facilities) ||
+                in_array(Tables::CITIES, $facilities)
+            ) {
 
-                $timezone = $this->createTimezone($timezone);
+                foreach (optional($data)->states as $state) {
+    
+                    $this->createState($country->id, $state);
+                }
 
-                $timezones[] = [ 'timezone_id' => $timezone->id, 'country_id' => $country->id ];
             }
 
-            $currency = $this->createCurrency($data);
+            if (in_array(Tables::TIMEZONES, $facilities)) {
 
-            $currencies[] = [ 'currency_id' => $currency->id, 'country_id' => $country->id ];
+                foreach (optional($data)->timezones as $timezone) {
 
-            CountryCurrency::insert($currencies);
+                    $timezone = $this->createTimezone($timezone);
 
-            CountryTimezone::insert($timezones);
+                    if (
+                        in_array(Tables::COUNTRIES, $facilities) &&
+                        in_array(Tables::TIMEZONES, $facilities)
+                    ) {
+
+                        $timezones[] = [ 'timezone_id' => $timezone->id, 'country_id' => $country->id ];
+
+                    }
+    
+                }
+
+            }
+
+            if (in_array(Tables::CURRENCIES, $facilities)) {
+
+                $currency = $this->createCurrency($data);
+
+                if (
+                    in_array(Tables::COUNTRIES, $facilities) &&
+                    in_array(Tables::CURRENCIES, $facilities)
+                ) {
+                
+                    $currencies[] = [ 'currency_id' => $currency->id, 'country_id' => $country->id ];
+                
+                }
+
+            }
+
+            if (
+                in_array(Tables::COUNTRIES, $facilities) &&
+                in_array(Tables::CURRENCIES, $facilities)
+            ) {
+
+                CountryCurrency::insert($currencies);
+            
+            }
+
+            if (
+                in_array(Tables::COUNTRIES, $facilities) &&
+                in_array(Tables::TIMEZONES, $facilities)
+            ) {
+
+                CountryTimezone::insert($timezones);
+            
+            }
+
         }
     }
 
-    private function payment(object $content): void
+    private function payment(object $content, array $facilities): void
     {
         $continents = $content->continents;
 
@@ -98,17 +158,23 @@ class AtlasSeeder extends Seeder
 
         $atlas = $content->atlas;
 
-        foreach ($continents as $data) {
-
-            $this->createContinent($data);
+        if (in_array(Tables::CONTINENTS, $facilities)) {
+        
+            foreach ($continents as $data) {
+    
+                $this->createContinent($data);
+            }
+        
         }
 
-        foreach ($paymentMethods as $data) {
-
-            $this->createPaymentMethod($data);
+        if (in_array(Tables::PAYMENT_METHODS, $facilities)) {
+        
+            foreach ($paymentMethods as $data) {
+    
+                $this->createPaymentMethod($data);
+            }
+        
         }
-
-        $methods = PaymentMethod::all()->keyBy('code');
 
         $paymentMethodProducts = [];
 
@@ -116,53 +182,79 @@ class AtlasSeeder extends Seeder
 
             $paymentMethodCode = Str::upper( Str::replace( '-', '_', $data->paymentMethodReference ) );
 
-            $product = $this->createPaymentProduct($data);
+            if (in_array(Tables::PAYMENT_PRODUCTS, $facilities)) {
+            
+                $product = $this->createPaymentProduct($data);
+            
+            }
 
             if (
-                ! is_null(optional( $methods->get($paymentMethodCode) )->id) &&
-                ! is_null($product->id)
+                in_array(Tables::PAYMENT_METHODS, $facilities) &&
+                in_array(Tables::PAYMENT_PRODUCTS, $facilities)
             ) {
-                $paymentMethodProducts[] = [
+                $methods = PaymentMethod::all()->keyBy('code');
 
-                    'payment_method_id' => optional( $methods->get($paymentMethodCode) )->id,
+                if (
+                    ! is_null(optional( $methods->get($paymentMethodCode) )->id) &&
+                    ! is_null($product->id)
+                ) {
+                    $paymentMethodProducts[] = [
+    
+                        'payment_method_id' => optional( $methods->get($paymentMethodCode) )->id,
+    
+                        'payment_product_id' => $product->id
+                    ];
+                }
 
-                    'payment_product_id' => $product->id
-                ];
             }
         }
 
-        PaymentMethodProduct::insert($paymentMethodProducts);
+        if (
+            in_array(Tables::PAYMENT_METHODS, $facilities) &&
+            in_array(Tables::PAYMENT_PRODUCTS, $facilities)
+        ) {
 
-        $countries = Country::all()->keyBy('iso2');
+            PaymentMethodProduct::insert($paymentMethodProducts);
 
-        $products = PaymentProduct::all()->keyBy('code');
+        }
 
-        foreach ($atlas as $data) {
+        if (
+            in_array(Tables::CONTINENTS, $facilities) &&
+            in_array(Tables::PAYMENT_PRODUCTS, $facilities)
+        ) {
 
-            $countryPaymentProducts = [];
-
-            $countryCode = Str::upper( $data->code );
-
-            $paymentProducts = $data->paymentProducts;
-
-            foreach ($paymentProducts as $data) {
-
-                $paymentProductCode = Str::upper( Str::replace( '-', '_', $data->code ) );
-
-                if (
-                    ! is_null(optional( $countries->get($countryCode) )->id) &&
-                    ! is_null(optional( $products->get($paymentProductCode) )->id)
-                ) {
-                    $countryPaymentProducts[] = [
-
-                        'country_id' => optional( $countries->get($countryCode) )->id,
-
-                        'payment_product_id' => optional( $products->get($paymentProductCode) )->id,
-                    ];
+            $countries = Country::all()->keyBy('iso2');
+    
+            $products = PaymentProduct::all()->keyBy('code');
+    
+            foreach ($atlas as $data) {
+    
+                $countryPaymentProducts = [];
+    
+                $countryCode = Str::upper( $data->code );
+    
+                $paymentProducts = $data->paymentProducts;
+    
+                foreach ($paymentProducts as $data) {
+    
+                    $paymentProductCode = Str::upper( Str::replace( '-', '_', $data->code ) );
+    
+                    if (
+                        ! is_null(optional( $countries->get($countryCode) )->id) &&
+                        ! is_null(optional( $products->get($paymentProductCode) )->id)
+                    ) {
+                        $countryPaymentProducts[] = [
+    
+                            'country_id' => optional( $countries->get($countryCode) )->id,
+    
+                            'payment_product_id' => optional( $products->get($paymentProductCode) )->id,
+                        ];
+                    }
                 }
+    
+                CountryPaymentProduct::insert($countryPaymentProducts);
             }
 
-            CountryPaymentProduct::insert($countryPaymentProducts);
         }
     }
 

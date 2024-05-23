@@ -10,7 +10,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'enabled' => [
-        Tables::CITIES,
+        // Tables::CITIES,
         Tables::COUNTRIES,
         Tables::CURRENCIES,
         Tables::PAYMENT_METHODS,

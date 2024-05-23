@@ -13,7 +13,6 @@ enum Tables: string
     const TIMEZONES = 'timezones';
     const CONTINENTS = 'continents';
 
-
     const COUNTRY_CURRENCIES = 'country_currencies';
     const COUNTRY_TIMEZONES = 'country_timezones';
     const COUNTRY_PAYMENT_PRODUCTS = 'country_payment_products';
