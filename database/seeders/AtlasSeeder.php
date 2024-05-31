@@ -17,6 +17,7 @@ use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Laraverse\Atlas\Enums\Tables;
 use Laraverse\Atlas\Models\City;
@@ -281,29 +282,30 @@ class AtlasSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        CountryCurrency::truncate();
+        $tables = [
+            Tables::CITIES,
+            Tables::COUNTRIES,
+            Tables::CURRENCIES,
+            Tables::PAYMENT_METHODS,
+            Tables::PAYMENT_PRODUCTS,
+            Tables::STATES,
+            Tables::TIMEZONES,
+            Tables::CONTINENTS,
+            Tables::COUNTRY_CURRENCIES,
+            Tables::COUNTRY_TIMEZONES,
+            Tables::COUNTRY_PAYMENT_PRODUCTS,
+            Tables::PAYMENT_METHOD_PRODUCTS,
+        ];
 
-        CountryTimezone::truncate();
+        foreach ($tables as $table) {
 
-        PaymentMethodProduct::truncate();
+            if (Schema::hasTable($table)) {
 
-        CountryPaymentProduct::truncate();
+                $model = Tables::getModel($table);
 
-        City::truncate();
-
-        State::truncate();
-
-        Currency::truncate();
-
-        Timezone::truncate();
-
-        Country::truncate();
-
-        PaymentMethod::truncate();
-
-        PaymentProduct::truncate();
-
-        Continent::truncate();
+                $model::truncate();
+            }
+        }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

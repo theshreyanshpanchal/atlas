@@ -33,7 +33,7 @@ class InstallAtlas extends Command
 
         $this->newLine();
 
-        $this->publishConfiguration($force = true);
+        // $this->publishConfiguration($force = true);
 
         if ($this->confirm('Run database migrations and seeder?', true)) {
             
@@ -62,7 +62,7 @@ class InstallAtlas extends Command
      */
     private function migrations(): void
     {
-        $root = "database/migrations/";
+        $root = "vendor/laraverse/atlas/database/migrations/";
 
         $facilities = config('atlas.facilities.enabled') ?? [];
 

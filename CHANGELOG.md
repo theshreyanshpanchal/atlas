@@ -38,3 +38,11 @@ All notable changes of `Atlas` will be documented in this file.
 ### What's Updated
 
 * Migrate the tables based on the enabled facilities (Also prevent the migration files from executing).
+
+## v1.0.5 - 2024-05-31
+
+### What's Updated
+
+* Removed the force publication while installing the atlas.
+
+* Facilities based specific table migration while installing the atlas.
