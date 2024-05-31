@@ -12,22 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $facilities = config('atlas.facilities.enabled') ?? [];
+        Schema::create(Tables::COUNTRY_TIMEZONES, function (Blueprint $table) {
+                
+            $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
+            
+            $table->foreignId('timezone_id')->nullable()->constrained(Tables::TIMEZONES);
 
-        if (
-            in_array(Tables::COUNTRIES, $facilities) &&
-            in_array(Tables::TIMEZONES, $facilities)
-        ) {
-        
-            Schema::create(Tables::COUNTRY_TIMEZONES, function (Blueprint $table) {
-                
-                $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
-                
-                $table->foreignId('timezone_id')->nullable()->constrained(Tables::TIMEZONES);
-    
-            });
-        
-        }
+        });
     }
 
     /**

@@ -12,22 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $facilities = config('atlas.facilities.enabled') ?? [];
-
-        if (
-            in_array(Tables::COUNTRIES, $facilities) &&
-            in_array(Tables::CURRENCIES, $facilities)
-        ) {
-
-            Schema::create(Tables::COUNTRY_CURRENCIES, function (Blueprint $table) {
+        Schema::create(Tables::COUNTRY_CURRENCIES, function (Blueprint $table) {
                 
-                $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
-                
-                $table->foreignId('currency_id')->nullable()->constrained(Tables::CURRENCIES);
-    
-            });
+            $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
+            
+            $table->foreignId('currency_id')->nullable()->constrained(Tables::CURRENCIES);
 
-        }
+        });
 
     }
 

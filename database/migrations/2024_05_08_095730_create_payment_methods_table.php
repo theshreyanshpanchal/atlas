@@ -12,25 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $facilities = config('atlas.facilities.enabled') ?? [];
+        Schema::create(Tables::PAYMENT_METHODS, function (Blueprint $table) {
+                
+            $table->id();
+            
+            $table->string('name');
+            
+            $table->string('code');
+            
+            $table->integer('order');
+            
+            $table->timestamps();
 
-        if (in_array(Tables::PAYMENT_METHODS, $facilities)) {
-        
-            Schema::create(Tables::PAYMENT_METHODS, function (Blueprint $table) {
-                
-                $table->id();
-                
-                $table->string('name');
-                
-                $table->string('code');
-                
-                $table->integer('order');
-                
-                $table->timestamps();
-    
-            });
-        
-        }
+        });
     }
 
     /**

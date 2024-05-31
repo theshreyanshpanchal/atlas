@@ -3,6 +3,7 @@
 namespace Laraverse\Atlas\Commands;
 
 use Illuminate\Console\Command;
+use Laraverse\Atlas\Enums\Tables;
 
 class InstallAtlas extends Command
 {
@@ -36,7 +37,7 @@ class InstallAtlas extends Command
 
         if ($this->confirm('Run database migrations and seeder?', true)) {
             
-            $this->call('migrate');
+            $this->migrations();
 
             $this->call('db:seed', ['--class' => 'Laraverse\\Atlas\\Database\\Seeders\\AtlasSeeder']);
         
@@ -54,6 +55,107 @@ class InstallAtlas extends Command
 
         $this->newLine(3);
 
+    }
+
+    /**
+     * Migrate the only tables which facilities are enabled form the config.
+     */
+    private function migrations(): void
+    {
+        $root = "database/migrations/";
+
+        $facilities = config('atlas.facilities.enabled') ?? [];
+
+        if (
+            in_array(Tables::COUNTRIES, $facilities) ||
+            in_array(Tables::STATES, $facilities) ||
+            in_array(Tables::CITIES, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::COUNTRIES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (
+            in_array(Tables::STATES, $facilities) ||
+            in_array(Tables::CITIES, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::STATES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (in_array(Tables::CURRENCIES, $facilities)) {
+            $file = Tables::getFile(Tables::CURRENCIES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (in_array(Tables::TIMEZONES, $facilities)) {
+            $file = Tables::getFile(Tables::TIMEZONES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (
+            in_array(Tables::COUNTRIES, $facilities) &&
+            in_array(Tables::TIMEZONES, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::COUNTRY_TIMEZONES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (
+            in_array(Tables::COUNTRIES, $facilities) &&
+            in_array(Tables::CURRENCIES, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::COUNTRY_CURRENCIES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (in_array(Tables::PAYMENT_METHODS, $facilities)) {
+            $file = Tables::getFile(Tables::PAYMENT_METHODS);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (in_array(Tables::PAYMENT_PRODUCTS, $facilities)) {
+            $file = Tables::getFile(Tables::PAYMENT_PRODUCTS);
+
+            $this->call('migrate', [ '--path' => $root . $file ]); 
+        }
+
+        if (in_array(Tables::CONTINENTS, $facilities)) {
+            $file = Tables::getFile(Tables::CONTINENTS);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (
+            in_array(Tables::COUNTRIES, $facilities) &&
+            in_array(Tables::PAYMENT_PRODUCTS, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::COUNTRY_PAYMENT_PRODUCTS);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (
+            in_array(Tables::PAYMENT_METHODS, $facilities) &&
+            in_array(Tables::PAYMENT_PRODUCTS, $facilities)
+        ) {
+            $file = Tables::getFile(Tables::PAYMENT_METHOD_PRODUCTS);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
+
+        if (in_array(Tables::CITIES, $facilities)) {
+            $file = Tables::getFile(Tables::CITIES);
+
+            $this->call('migrate', [ '--path' => $root . $file ]);
+        }
     }
 
     /**

@@ -9,27 +9,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        $facilities = config('atlas.facilities.enabled') ?? [];
-        
-        if (in_array(Tables::CITIES, $facilities)) {
-        
-            Schema::create(Tables::CITIES, function (Blueprint $table) {
+        Schema::create(Tables::CITIES, function (Blueprint $table) {
     
-                $table->id();
-    
-                $table->foreignId('state_id')->nullable()->constrained(Tables::STATES);
-                
-                $table->string('name');
-                
-                $table->string('latitude')->nullable();
-                
-                $table->string('longitude')->nullable();
-                
-                $table->timestamps();
-    
-            });
+            $table->id();
 
-        }
+            $table->foreignId('state_id')->nullable()->constrained(Tables::STATES);
+            
+            $table->string('name');
+            
+            $table->string('latitude')->nullable();
+            
+            $table->string('longitude')->nullable();
+            
+            $table->timestamps();
+
+        });
     }
 
     public function down(): void

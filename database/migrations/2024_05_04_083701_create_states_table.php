@@ -12,32 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $facilities = config('atlas.facilities.enabled') ?? [];
+        Schema::create(Tables::STATES, function (Blueprint $table) {
+                
+            $table->id();
 
-        if (
-            in_array(Tables::STATES, $facilities) ||
-            in_array(Tables::CITIES, $facilities)
-        ) {
+            $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
+            
+            $table->string('name');
+            
+            $table->string('code');
+            
+            $table->string('latitude')->nullable();
+            
+            $table->string('longitude')->nullable();
+            
+            $table->timestamps();
 
-            Schema::create(Tables::STATES, function (Blueprint $table) {
-                
-                $table->id();
-
-                $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
-                
-                $table->string('name');
-                
-                $table->string('code');
-                
-                $table->string('latitude')->nullable();
-                
-                $table->string('longitude')->nullable();
-                
-                $table->timestamps();
-
-            });
-
-        }
+        });
     }
 
     /**
