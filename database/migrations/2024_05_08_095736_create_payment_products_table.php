@@ -12,21 +12,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Tables::PAYMENT_PRODUCTS, function (Blueprint $table) {
-            
-            $table->id();
-            
-            $table->string('name');
-            
-            $table->string('code');
-            
-            $table->string('logo');
-            
-            $table->integer('order');
-            
-            $table->timestamps();
+        $facilities = config('atlas.facilities.enabled') ?? [];
 
-        });
+        if (in_array(Tables::PAYMENT_PRODUCTS, $facilities)) {
+
+            Schema::create(Tables::PAYMENT_PRODUCTS, function (Blueprint $table) {
+                
+                $table->id();
+                
+                $table->string('name');
+                
+                $table->string('code');
+                
+                $table->string('logo');
+                
+                $table->integer('order');
+                
+                $table->timestamps();
+    
+            });
+
+        }
+
     }
 
     /**

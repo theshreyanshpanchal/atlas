@@ -22,6 +22,13 @@ All notable changes of `Atlas` will be documented in this file.
 
 ## v1.0.2 - 2024-05-23
 
-### What's Updated
+### What's New
 
 * New facilities feature.
+
+
+## v1.0.3 - 2024-05-31
+
+### What's Updated
+
+* Migrate the tables based on the enabled facilities.

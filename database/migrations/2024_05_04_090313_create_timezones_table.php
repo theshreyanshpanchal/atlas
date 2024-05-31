@@ -12,23 +12,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Tables::TIMEZONES, function (Blueprint $table) {
-            
-            $table->id();
-            
-            $table->string('zone_name');
-            
-            $table->string('gmt_offset')->nullable();
-            
-            $table->string('gmt_offset_name')->nullable();
-            
-            $table->string('abbreviation')->nullable();
-            
-            $table->string('tz_name')->nullable();
-            
-            $table->timestamps();
+        $facilities = config('atlas.facilities.enabled') ?? [];
 
-        });
+        if (in_array(Tables::TIMEZONES, $facilities)) {
+        
+            Schema::create(Tables::TIMEZONES, function (Blueprint $table) {
+                
+                $table->id();
+                
+                $table->string('zone_name');
+                
+                $table->string('gmt_offset')->nullable();
+                
+                $table->string('gmt_offset_name')->nullable();
+                
+                $table->string('abbreviation')->nullable();
+                
+                $table->string('tz_name')->nullable();
+                
+                $table->timestamps();
+    
+            });
+        
+        }
+
     }
 
     /**

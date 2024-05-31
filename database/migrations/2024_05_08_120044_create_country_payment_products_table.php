@@ -12,13 +12,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Tables::COUNTRY_PAYMENT_PRODUCTS, function (Blueprint $table) {
-            
-            $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
-            
-            $table->foreignId('payment_product_id')->nullable()->constrained(Tables::PAYMENT_PRODUCTS);
+        $facilities = config('atlas.facilities.enabled') ?? [];
 
-        });
+        if (
+            in_array(Tables::COUNTRIES, $facilities) &&
+            in_array(Tables::PAYMENT_PRODUCTS, $facilities)
+        ) {
+
+            Schema::create(Tables::COUNTRY_PAYMENT_PRODUCTS, function (Blueprint $table) {
+                
+                $table->foreignId('country_id')->nullable()->constrained(Tables::COUNTRIES);
+                
+                $table->foreignId('payment_product_id')->nullable()->constrained(Tables::PAYMENT_PRODUCTS);
+    
+            });
+
+        }
     }
 
     /**

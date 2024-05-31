@@ -12,17 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Tables::CURRENCIES, function (Blueprint $table) {
-            
-            $table->id();
-            
-            $table->string('code');
-            
-            $table->string('symbol');
-            
-            $table->timestamps();
+        $facilities = config('atlas.facilities.enabled') ?? [];
 
-        });
+        if (in_array(Tables::CURRENCIES, $facilities)) {
+
+            Schema::create(Tables::CURRENCIES, function (Blueprint $table) {
+                
+                $table->id();
+                
+                $table->string('code');
+                
+                $table->string('symbol');
+                
+                $table->timestamps();
+    
+            });
+
+        }
     }
 
     /**

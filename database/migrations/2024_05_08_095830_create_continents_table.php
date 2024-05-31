@@ -12,16 +12,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Tables::CONTINENTS, function (Blueprint $table) {
-            
-            $table->id();
-            
-            $table->string('name');
-            
-            $table->string('code');
-            
-            $table->timestamps();
-        });
+        $facilities = config('atlas.facilities.enabled') ?? [];
+
+        if (in_array(Tables::CONTINENTS, $facilities)) {
+        
+            Schema::create(Tables::CONTINENTS, function (Blueprint $table) {
+                
+                $table->id();
+                
+                $table->string('name');
+                
+                $table->string('code');
+                
+                $table->timestamps();
+            });
+        
+        }
     }
 
     /**

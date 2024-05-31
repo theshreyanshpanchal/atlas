@@ -219,7 +219,7 @@ class AtlasSeeder extends Seeder
         }
 
         if (
-            in_array(Tables::CONTINENTS, $facilities) &&
+            in_array(Tables::COUNTRIES, $facilities) &&
             in_array(Tables::PAYMENT_PRODUCTS, $facilities)
         ) {
 
